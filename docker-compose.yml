@@ -1,0 +1,27 @@
+version: '3'
+services:
+    php-apache:
+        build:
+            context: ./php-apache
+        image: php:7.2.1-apache
+        ports:
+            - 80:80
+        volumes:
+            - ./typo3:/var/www/typo3
+        links:
+            - 'mariadb'
+    mariadb:
+        build:
+            context: ./mariadb
+        image: mariadb:10.1
+        volumes:
+            - mariadb:/var/lib/mysql
+        environment:
+            TZ: "Europe/Berlin"
+            MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_USER: 'testuser'
+            MYSQL_PASSWORD: 'testpassword'
+            MYSQL_DATABASE: 'typo3'
+volumes:
+    mariadb:
