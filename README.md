@@ -31,3 +31,4 @@ To install Typo3 or any of its packages it's recommended to use composer. Use it
 1. `$ docker container ls` and grabbing the id of the php-apache container.
 2. `$ docker exec -it <containerId> bash` into the shell, which takes you to the `/var/www/html` folder on the apache container.
 3. `$ cd /var/www/typo3` into your typo3 source, where you can install typo3 using composer `$ composer create-project typo3/cms-base-distribution . ^9` or install other packages.
+4. Grab an [.htaccess](https://github.com/benjaminkott/bootstrap_package/blob/master/Configuration/Server/_.htaccess), which seemed to be missing from the base distribution. The enabled Apache modules in the Dockerfile are used in this `.htaccess` file.
